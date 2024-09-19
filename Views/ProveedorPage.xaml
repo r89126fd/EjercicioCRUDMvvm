@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:EjercicioCRUDMvvm.ViewModels"
+             x:Class="EjercicioCRUDMvvm.Views.ProveedorPage">
+
+    <ContentPage.BindingContext>
+        <local:ProveedorViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Padding="10">
+        <Label Text="Gestión de Proveedores" FontSize="24" HorizontalOptions="Center" />
+
+        <Entry Placeholder="Nombre" Text="{Binding Proveedor.Nombre}" />
+        <Entry Placeholder="Dirección" Text="{Binding Proveedor.Direccion}" />
+        <Entry Placeholder="Teléfono" Text="{Binding Proveedor.Telefono}" />
+        <Entry Placeholder="Email" Text="{Binding Proveedor.Email}" />
+        <Entry Placeholder="Empresa" Text="{Binding Proveedor.Empresa}" />
+
+        <Button Text="Agregar Proveedor" Command="{Binding AddProveedorCommand}" />
+
+        <ListView ItemsSource="{Binding Proveedores}" SelectedItem="{Binding Proveedor}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Nombre}" Detail="{Binding Empresa}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Text="Eliminar Proveedor" Command="{Binding DeleteProveedorCommand}" CommandParameter="{Binding .}" />
+    </StackLayout>
+</ContentPage>
